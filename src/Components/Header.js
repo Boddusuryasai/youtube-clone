@@ -17,7 +17,6 @@ const Header = () => {
   useEffect(() => {
      
     const timer = setTimeout(()=>{
-      
       if(cachedResults[searchQuery]){
         setSuggestions(cachedResults[searchQuery])  
        }
