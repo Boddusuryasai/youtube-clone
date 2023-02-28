@@ -1,9 +1,13 @@
 import React from 'react'
-
+import { useSelector } from 'react-redux'
 const Sidebar = () => {
+    const isMenuOpen = useSelector(store=>store.app.isMenuOpen)
+
+  if(isMenuOpen) return null;
   return (
+    
     <div>
-        <aside className="w-full p-6 sm:w-60 dark:bg-gray-900 dark:text-gray-100">
+    <aside className="w-full p-6 sm:w-60 dark:bg-gray-900 dark:text-gray-100">
 	<nav className="space-y-8 text-sm">
 		<div className="space-y-2">
 			<h2 className="text-sm font-semibold tracking-widest uppercase dark:text-gray-400">Getting Started</h2>
@@ -26,22 +30,7 @@ const Sidebar = () => {
 				<a rel="noopener noreferrer" href="#">Footer</a>
 			</div>
 		</div>
-		<div className="space-y-2">
-			<h2 className="text-sm font-semibold tracking-widest uppercase dark:text-gray-400">Pages</h2>
-			<div className="flex flex-col space-y-1">
-				<a rel="noopener noreferrer" href="#">Homepage</a>
-				<a rel="noopener noreferrer" href="#">Users</a>
-				<a rel="noopener noreferrer" href="#">Tools</a>
-				<a rel="noopener noreferrer" href="#">Settings</a>
-			</div>
-		</div>
-		<div className="space-y-2">
-			<h2 className="text-sm font-semibold tracking-widest uppercase dark:text-gray-400">Misc</h2>
-			<div className="flex flex-col space-y-1">
-				<a rel="noopener noreferrer" href="#">Tutorials</a>
-				<a rel="noopener noreferrer" href="#">Changelog</a>
-			</div>
-		</div>
+		
 	</nav>
 </aside>
     </div>

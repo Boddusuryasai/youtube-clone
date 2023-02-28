@@ -3,12 +3,20 @@ import {AiOutlineMenu} from "react-icons/ai";
 import {TfiSearch} from "react-icons/tfi";
 import {IoMdMic} from "react-icons/io";
 import {IoIosNotificationsOutline} from "react-icons/io"
+import { toggleMenu } from '../utils/Appslice';
+import { useDispatch } from 'react-redux';
 
 
 const Header = () => {
+  const dispatch = useDispatch()
+    const handleToggleMenu =()=>{
+              dispatch(toggleMenu())
+    }
   return (
-    <div className='flex justify-center gap-7 py-3'>
+    <div className='flex justify-center gap-7 py-5'>
+        <button onClick={()=>handleToggleMenu()}>
         <AiOutlineMenu size="1.5rem" className='my-auto'></AiOutlineMenu>
+        </button>
         <img  className="w-24 h-10" src='https://res.cloudinary.com/dybiiddob/image/upload/v1677557806/png-transparent-youtube-logo-music-video-computer-icons-youtube-logo-text-trademark-logo_jq0dnk.png' alt='logo'></img>
         <form className='flex justify-center w-2/3'>
             <input type="text" placeholder='Search' className='border w-[70%] ml-2 rounded-l-2xl placeholder:pl-4 placeholder:text-lg'/>
