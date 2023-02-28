@@ -1,15 +1,23 @@
-import React from 'react'
-import { Outlet } from 'react-router-dom'
+import React from 'react';
+import { Outlet } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-import Sidebar from './Sidebar'
+import Sidebar from './Sidebar';
 
 const Body = () => {
-  return (
-    <div className='flex flex-row '>
-        <Sidebar/>
-        <Outlet/>
-    </div>
-  )
-}
+  const isMenuOpen = useSelector(store => store.app.isMenuOpen);
+  const marginLeft = isMenuOpen ? '250px' : '0';
 
-export default Body
+  return (
+    <div className='flex flex-row'>
+      <div style={{ position: 'fixed', top: "80px", left: 0 }}>
+        <Sidebar />
+      </div>
+      <div style={{ marginLeft: marginLeft, overflowY: 'auto' }}>
+        <Outlet />
+      </div>
+    </div>
+  );
+};
+
+export default Body;

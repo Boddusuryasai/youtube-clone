@@ -13,13 +13,13 @@ const Header = () => {
               dispatch(toggleMenu())
     }
   return (
-    <div className='flex justify-center gap-7 py-5'>
+    <div className='flex justify-center gap-7 py-5 w-full bg-white fixed '>
         <button onClick={()=>handleToggleMenu()}>
         <AiOutlineMenu size="1.5rem" className='my-auto'></AiOutlineMenu>
         </button>
         <img  className="w-24 h-10" src='https://res.cloudinary.com/dybiiddob/image/upload/v1677557806/png-transparent-youtube-logo-music-video-computer-icons-youtube-logo-text-trademark-logo_jq0dnk.png' alt='logo'></img>
         <form className='flex justify-center w-2/3'>
-            <input type="text" placeholder='Search' className='border w-[70%] ml-2 rounded-l-2xl placeholder:pl-4 placeholder:text-lg'/>
+            <input type="text" placeholder='Search' className='border w-[70%] ml-2 rounded-l-2xl pl-6  placeholder:text-lg focus:outline-none'/>
             <button className='border rounded-r-2xl px-4 bg-gray-100'><TfiSearch size="1.3rem"></TfiSearch></button>
             <IoMdMic className='ml-2 my-auto' size="1.3rem"></IoMdMic>
         </form>
