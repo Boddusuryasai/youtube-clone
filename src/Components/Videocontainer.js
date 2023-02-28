@@ -15,7 +15,7 @@ const Videocontainer = () => {
     setVideos(videos.items);
   };
   return (
-    <div className="flex flex-wrap">
+    <div className="flex flex-wrap gap-5">
       {videos.length>0?
         videos.map((video) => {
           return <Link to={"/watch?v="+video.id} key={video.id}><VideoCard videoInfo={video} /></Link> 
