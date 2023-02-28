@@ -10,7 +10,10 @@ const buttonNames = [
   "Music",
   "Comedy",
   "Programming",
-  "Live"
+  "Live",
+  "dance",
+  "react",
+  "pubg",
 ];
 
 const ButtonList = () => {
