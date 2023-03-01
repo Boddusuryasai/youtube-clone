@@ -8,7 +8,7 @@ const Sidebar = () => {
   if (!isMenuOpen) return null;
   return (
     <div>
-      <aside className="w-full px-6 py-3 sm:w-60 dark:bg-gray-900 dark:text-gray-100">
+      <aside className="w-full px-6 py-3 sm:w-60 bg-white h-screen dark:bg-gray-900 dark:text-gray-100">
         <nav className="space-y-8 text-sm">
           <div className="space-y-2">
             <div className="flex flex-col ">
