@@ -53,7 +53,7 @@ const Header = () => {
         <AiOutlineMenu size="1.5rem" className="my-auto"></AiOutlineMenu>
       </button>
       <img
-        className="w-24 h-8 my-auto"
+        className="w-24 h-6 my-auto"
         src="https://res.cloudinary.com/dybiiddob/image/upload/v1677582147/youtube-logo_d0dmul.png"
         alt="logo"
       ></img>
@@ -69,7 +69,7 @@ const Header = () => {
         <button className="border rounded-r-3xl px-4  bg-gray-100">
           <TfiSearch size="1.3rem"></TfiSearch>
         </button>
-        <IoMdMic className="ml-2 my-auto" size="1.3rem"></IoMdMic>
+        <IoMdMic className="ml-2 my-auto" size="2rem" color="#262726"></IoMdMic>
         {suggestions.length > 0 && (
           <div className="absolute top-full left-0 w-[90.3%] bg-white border rounded-3xl shadow-md">
             {suggestions.map((suggestion) => (
@@ -97,7 +97,12 @@ const Header = () => {
           ></path>
         </g>
       </svg>
-      <IoIosNotificationsOutline size="2rem"></IoIosNotificationsOutline>
+      <span className="relative inline-block my-auto">
+      <IoIosNotificationsOutline size="2rem" className="my-auto"></IoIosNotificationsOutline>
+      <span class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">3</span>
+       
+      </span>
+      
       <div className="w-10 h-10 rounded-full bg-gray-100"></div>
     </div>
   );
