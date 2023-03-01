@@ -1,26 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { YOUTUBE_URL } from "../utils/constants";
+import { fetchVideos } from "../utils/VideoSlice";
 import VideoCard from "./VideoCard";
+import ShimmerUi from "./ShimmerUi";
 
 const Videocontainer = () => {
-  const [videos, setVideos] = useState([]);
-
+  const dispatch = useDispatch();
+  const { videos, loading, error } = useSelector((state) => state.videos);
   useEffect(() => {
-    getVideos();
-  }, []);
-  const getVideos = async () => {
-    const data = await fetch(YOUTUBE_URL);
-    const videos = await data.json();
-    setVideos(videos.items);
-  };
+    dispatch(fetchVideos());
+  }, [dispatch]);
+
+  if (loading) {
+    return <ShimmerUi/>;
+  }
+
+  if (error) {
+    return <p>{error}</p>;
+  }
+
   return (
     <div className="flex flex-wrap gap-5">
-      {videos.length>0?
-        videos.map((video) => {
-          return <Link to={"/watch?v="+video.id} key={video.id}><VideoCard videoInfo={video} /></Link> 
-         
-        }):null}
+      {videos.map((video,i) => (
+        <Link to={`/watch?v=${video.id}`} key={i}>
+          <VideoCard videoInfo={video} />
+        </Link>
+      ))}
     </div>
   );
 };

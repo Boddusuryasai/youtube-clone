@@ -11,7 +11,7 @@ const WatchPage = () => {
     dispatch(closeMenu());
   }, []);
   return (
-    <div className="px-6 mt-24 ml-10 w-[1200px]">
+    <div className="px-6 mt-24 w-full">
       <div className="flex space-x-3 ">
         <iframe
           width="900"

@@ -14,7 +14,7 @@ const VideoCard = ({ videoInfo }) => {
       <div className="px-4 py-2">
         <h3 className="text-lg font-medium mb-1 line-clamp-2 truncate">{title}</h3>
         <p className="text-gray-600 font-semibold">{channelTitle}</p>
-        <p className="text-gray-600">{statistics.viewCount>= 1000 ? `${(statistics.viewCount / 1000).toFixed(1)}k` : statistics.viewCount.toString()} views</p>
+        <p className="text-gray-600">{statistics?.viewCount>= 1000 ? `${(statistics?.viewCount / 1000).toFixed(1)}k` : statistics?.viewCount.toString()} views</p>
       </div>
     </div>
   );

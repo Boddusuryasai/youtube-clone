@@ -7,15 +7,17 @@ import { toggleMenu } from "../utils/Appslice";
 import { useDispatch ,useSelector } from "react-redux";
 import { YOUTUBE_SEARCH_API } from "../utils/constants";
 import { cacheResults } from "../utils/searchSlice";
+import { fetchAdditionalVideos } from "../utils/VideoSlice";
+
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
+  const [isVisible ,setIsVisible] = useState(false)
   const dispatch = useDispatch();
   const cachedResults = useSelector(store=>store.search)
-
   useEffect(() => {
-     
+     setIsVisible(true)
     const timer = setTimeout(()=>{
       if(cachedResults[searchQuery]){
         setSuggestions(cachedResults[searchQuery])  
@@ -47,6 +49,12 @@ const Header = () => {
   const handleToggleMenu = () => {
     dispatch(toggleMenu());
   };
+  const handleSuggestionClick = (suggestionText) => {
+    dispatch(fetchAdditionalVideos(suggestionText));
+    setIsVisible(false)
+     
+  };
+  
   return (
     <div className="flex justify-between gap-7 py-5 w-full bg-white fixed px-4">
       <button onClick={() => handleToggleMenu()}>
@@ -58,7 +66,10 @@ const Header = () => {
         alt="logo"
       ></img>
 
-      <form className="flex justify-center relative w-2/3">
+      <form className="flex justify-center relative w-2/3" onSubmit={(e)=>{
+         e.preventDefault()
+         handleSuggestionClick(searchQuery)
+      }}>
         <input
           type="text"
           value={searchQuery}
@@ -70,11 +81,12 @@ const Header = () => {
           <TfiSearch size="1.3rem"></TfiSearch>
         </button>
         <IoMdMic className="ml-2 my-auto" size="2rem" color="#262726"></IoMdMic>
-        {suggestions.length > 0 && (
+        {suggestions.length > 0 &&  isVisible && (
           <div className="absolute top-full left-0 w-[90.3%] bg-white border rounded-3xl shadow-md">
             {suggestions.map((suggestion) => (
               <div
                 key={suggestion}
+                onClick={() => handleSuggestionClick(suggestion)}
                 className="px-6 py-1 cursor-pointer hover:bg-gray-100"
               >
                 {suggestion}
@@ -99,7 +111,7 @@ const Header = () => {
       </svg>
       <span className="relative inline-block my-auto">
       <IoIosNotificationsOutline size="2rem" className="my-auto"></IoIosNotificationsOutline>
-      <span class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">3</span>
+      <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">3</span>
        
       </span>
       
