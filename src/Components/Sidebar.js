@@ -1,13 +1,36 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React , {useEffect} from "react";
+import { useSelector , useDispatch } from "react-redux";
 import { AiFillHome } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { closeMenu } from "../utils/Appslice";
+import { useRef } from "react";
 const Sidebar = () => {
   const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
-  console.log(isMenuOpen)
-  if (!isMenuOpen) return null;
+  const dispatch = useDispatch();
+  const sidebarRef = useRef(null);
+
+  const handleClickOutside = (event) => {
+    if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+      dispatch(closeMenu());
+    }
+  };
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isMenuOpen]);
+
+ 
+  if (!isMenuOpen){ return null };
   return (
-    <div>
+    <div className={isMenuOpen ? "sidebar open" : "sidebar"} ref={sidebarRef}>
       <aside className="w-full px-6 py-3 sm:w-60 bg-white h-screen dark:bg-gray-900 dark:text-gray-100">
         <nav className="space-y-8 text-sm">
           <div className="space-y-2">

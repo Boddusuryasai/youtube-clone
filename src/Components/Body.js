@@ -17,6 +17,7 @@ const Body = () => {
     backgroundColor: '#fff',
     transition: 'left 0.3s ease',
     marginRight: isMenuOpen ? '0' : '-250px',
+    zIndex:40
   };
 
   const outletStyles = {
