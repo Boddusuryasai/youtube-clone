@@ -1,13 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { YOUTUBE_URL,YOUTUBE_SEARCH_URL } from "./constants";
+import { YOUTUBE_URL } from "./constants";
 export const fetchVideos = createAsyncThunk("videos/fetchVideos", async () => {
-    const response = await fetch(YOUTUBE_URL);
+   const response = await fetch(YOUTUBE_URL);
     const data = await response.json();
     return data.items;
   });
   
   export const fetchAdditionalVideos = createAsyncThunk("videos/fetchAdditionalVideos", async (query) => {
-    const response = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${query}&key=AIzaSyCHKm-v2cxZCepXqjKALGos8hd83N03If8`)
+    const response = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${query}&key=${process.env.REACT_APP_GOOGLE_API_KEY}`)
     const data = await response.json();
     return data.items;
   });
